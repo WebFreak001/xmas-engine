@@ -3,6 +3,7 @@ package com.example.game;
 import java.awt.event.KeyEvent;
 
 import uk.co.nozzer.Game;
+import uk.co.nozzer.audio.Audio;
 import uk.co.nozzer.entities.EntityManager;
 import uk.co.nozzer.entities.gfx.LightFade;
 import uk.co.nozzer.gfx.Bitmap;
@@ -19,6 +20,8 @@ public class Test extends Game {
 	private Spritesheet fontsheet;
 	private Font font;
 
+	private Audio audio;
+	
 	public Test(Window window) {
 		super(window);
 
