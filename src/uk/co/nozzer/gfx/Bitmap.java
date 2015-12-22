@@ -124,6 +124,9 @@ public class Bitmap {
 			return pixels[x + y * width];
 	}
 
+	public void setPixel(Vector2f position, int colour) {
+		setPixel((int) position.getX(), (int) position.getY(), colour);
+	}
 	public void setPixel(int x, int y, int colour) {
 		if (x < 0 || y < 0 || x >= width || y >= height || colour == 0)
 			return;

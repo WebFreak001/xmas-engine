@@ -13,12 +13,13 @@ public abstract class Game {
 	protected Bitmap screen;
 	
 	private long startTimer = 0L;
-	
+		
 	public Game(Window window) {
 		this.window = window;
 		
 		this.screen = new Bitmap(window.getInitialWidth(), window.getInitialHeight());
 	}
+	
 	
 	public void start() {
 		long lastTime = System.nanoTime();
