@@ -6,8 +6,8 @@ import uk.co.nozzer.maths.Vector2f;
 
 public class EntityRenderable extends Entity {
 
-	private Vector2f position;
-	private Dimension2f size;
+	protected Vector2f position;
+	protected Dimension2f size;
 	
 	public EntityRenderable(Vector2f position, Dimension2f size) {
 		this.position = position;
@@ -24,4 +24,18 @@ public class EntityRenderable extends Entity {
 		screen.fillRectangle(position, size, 0xFF00FF);
 	}
 
+	// --- getters and setters
+	public Vector2f getPosition() {
+		return this.position;
+	}
+	public Dimension2f getSize() {
+		return this.size;
+	}
+	
+	public void setPosition(Vector2f position) {
+		this.position = position;
+	}
+	public void setSize(Dimension2f size) {
+		this.size = size;
+	}
 }

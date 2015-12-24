@@ -2,6 +2,7 @@ package uk.co.nozzer.gfx;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
+import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -101,6 +102,14 @@ public class Bitmap {
 					index % sheet.getSheetSpriteWidth(), 
 					(int) Math.floor(index / sheet.getSheetSpriteWidth()));
 			blit(character, x + (i * sheet.getSpriteWidth()), y);
+		}
+	}
+	
+	public void save(String path) {
+		try {
+			ImageIO.write(image, "PNG", new File(path));
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

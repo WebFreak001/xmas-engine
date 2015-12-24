@@ -6,9 +6,11 @@ import uk.co.nozzer.maths.Vector2f;
 public abstract class Tile {
 
 	protected Vector2f position;
+	protected Level level;
 
-	public Tile(Vector2f position) {
+	public Tile(Vector2f position, Level level) {
 		this.position = position;
+		this.level = level;
 	}
 	
 	public abstract void update(double delta);
@@ -17,6 +19,9 @@ public abstract class Tile {
 	// --- getters and setters
 	public Vector2f getPosition() {
 		return this.position;
+	}
+	public Level getLevel() {
+		return this.level;
 	}
 	
 	public void setPosition(Vector2f position) {

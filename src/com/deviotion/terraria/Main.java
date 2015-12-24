@@ -10,5 +10,6 @@ public class Main {
 		int height = width / 16 * 9;
 		
 		new TerrariaClone(new Window(width, height, scale, "Terraria Clone | Powered by the XMas Engine")).start();
+		
 	}
 }
