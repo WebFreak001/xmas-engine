@@ -8,11 +8,11 @@ import uk.co.nozzer.maths.Vector2f;
 
 public class Mouse implements MouseListener, MouseMotionListener {
 	
-	private Vector2f position = new Vector2f(-1, -1);
-	private int button = -1;
-	private boolean down = false;
+	private static Vector2f position = new Vector2f(-1, -1);
+	private static int button = -1;
+	private static boolean down = false;
 	
-	private int scale;
+	private static int scale;
 	
 	public Mouse(int scale) {
 		this.scale = scale;
@@ -59,13 +59,13 @@ public class Mouse implements MouseListener, MouseMotionListener {
 	}
 
 	// --- getters and setters
-	public Vector2f getPosition() {
-		return this.position;
+	public static Vector2f getPosition() {
+		return position;
 	}
-	public boolean isDown() {
-		return this.down;
+	public static boolean isDown() {
+		return down;
 	}
-	public int getButton() {
-		return this.button;
+	public static int getButton() {
+		return button;
 	}
 }

@@ -44,7 +44,7 @@ public class Window extends JFrame {
 	
 	private void init() {
 		setTitle(title);
-		setResizable(true);
+		setResizable(false);
 		setSize(new Dimension(width * scale, height * scale));
 		setLocationRelativeTo(null);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

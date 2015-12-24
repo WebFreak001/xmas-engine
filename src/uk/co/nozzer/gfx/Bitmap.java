@@ -68,7 +68,6 @@ public class Bitmap {
 		fillRectangle((int) position.getX(), (int) position.getY(), (int) size.getWidth(), (int) size.getHeight(),
 				colour);
 	}
-
 	public void fillRectangle(int xPos, int yPos, int width, int height, int colour) {
 		for (int x = 0; x < width; x++) {
 			int xp = x + xPos;
@@ -77,6 +76,16 @@ public class Bitmap {
 				setPixel(xp, yp, colour);
 			}
 		}
+	}
+	
+	public void drawRectangle(Vector2f position, Dimension2f size, int colour) {
+		drawRectangle((int) position.getX(), (int) position.getY(), (int) size.getWidth(), (int) size.getHeight(), colour);
+	}
+	public void drawRectangle(int xPos, int yPos, int width, int height, int colour) {
+		drawLine(xPos, yPos, xPos + width, yPos, colour);
+		drawLine(xPos, yPos, xPos, yPos + height, colour);
+		drawLine(xPos + width, yPos, xPos + width, yPos + height, colour);
+		drawLine(xPos + width, yPos + height, xPos, yPos + height, colour);
 	}
 
 	public void fillCircle(Vector2f position, int radius, int colour) {
@@ -91,20 +100,64 @@ public class Bitmap {
 			}
 		}
 	}
-	
+
 	public void drawString(String string, Font font, int x, int y, int colour) {
 		Spritesheet sheet = font.getSheet();
 		for (int i = 0; i < string.length(); i++) {
 			String currentChar = string.split("")[i];
 			int index = font.getFontMap().indexOf(currentChar);
-			
-			Bitmap character = sheet.getSprite(
-					index % sheet.getSheetSpriteWidth(), 
+
+			Bitmap character = sheet.getSprite(index % sheet.getSheetSpriteWidth(),
 					(int) Math.floor(index / sheet.getSheetSpriteWidth()));
 			blit(character, x + (i * sheet.getSpriteWidth()), y);
 		}
 	}
-	
+
+	public void drawLine(Vector2f from, Vector2f to, int colour) {
+		drawLine((int) from.getX(), (int) from.getY(), (int) to.getX(), (int) to.getY(), colour);
+	}
+	public void drawLine(int x, int y, int x2, int y2, int colour) {
+		int w = x2 - x;
+		int h = y2 - y;
+		int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
+		if (w < 0)
+			dx1 = -1;
+		else if (w > 0)
+			dx1 = 1;
+		if (h < 0)
+			dy1 = -1;
+		else if (h > 0)
+			dy1 = 1;
+		if (w < 0)
+			dx2 = -1;
+		else if (w > 0)
+			dx2 = 1;
+		int longest = Math.abs(w);
+		int shortest = Math.abs(h);
+		if (!(longest > shortest)) {
+			longest = Math.abs(h);
+			shortest = Math.abs(w);
+			if (h < 0)
+				dy2 = -1;
+			else if (h > 0)
+				dy2 = 1;
+			dx2 = 0;
+		}
+		int numerator = longest >> 1;
+		for (int i = 0; i <= longest; i++) {
+			setPixel(x, y, colour);
+			numerator += shortest;
+			if (!(numerator < longest)) {
+				numerator -= longest;
+				x += dx1;
+				y += dy1;
+			} else {
+				x += dx2;
+				y += dy2;
+			}
+		}
+	}
+
 	public void save(String path) {
 		try {
 			ImageIO.write(image, "PNG", new File(path));
@@ -136,6 +189,7 @@ public class Bitmap {
 	public void setPixel(Vector2f position, int colour) {
 		setPixel((int) position.getX(), (int) position.getY(), colour);
 	}
+
 	public void setPixel(int x, int y, int colour) {
 		if (x < 0 || y < 0 || x >= width || y >= height || colour == 0)
 			return;
