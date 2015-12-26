@@ -50,6 +50,7 @@ public class Window extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		
 		setVisible(true);
+		requestFocus();
 		
 		canvas = new Canvas();
 		canvas.setSize(new Dimension(width * scale, height * scale));

@@ -23,4 +23,8 @@ public class TileAir extends Tile {
 				Level.TILE_SIZE, Level.TILE_SIZE, colour);
 	}
 
+	@Override
+	public boolean isSolid() {
+		return false;
+	}
 }

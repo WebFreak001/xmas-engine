@@ -54,6 +54,10 @@ public class Bitmap {
 		Arrays.fill(this.pixels, colour);
 	}
 
+	
+	public void blit(Bitmap bitmap, Vector2f position) {
+		blit(bitmap, (int) position.getX(), (int) position.getY());
+	}
 	public void blit(Bitmap bitmap, int xPos, int yPos) {
 		for (int y = 0; y < bitmap.getHeight(); y++) {
 			int yp = y + yPos;

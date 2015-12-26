@@ -42,4 +42,8 @@ public class TileDirt extends Tile {
 		screen.setPixel((int) position.getX() * Level.TILE_SIZE + specXOffs2, (int) position.getY() * Level.TILE_SIZE  + specYOffs2, 0x725139);
 	}
 
+	// --- getters and setters
+	public boolean isSolid() {
+		return true;
+	}
 }

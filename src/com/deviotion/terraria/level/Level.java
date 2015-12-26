@@ -17,6 +17,8 @@ public class Level {
 	
 	public static int UNDERGROUND_LEVEL;
 	
+	private int gravity = 1;
+	
 	public Level(Dimension2f size) {
 		this.size = size;
 		this.tiles = new Tile[(int) size.getWidth() * (int) size.getHeight()];
@@ -91,7 +93,11 @@ public class Level {
 
 	public Tile getTile(int x, int y) {
 		if (x < 0 || y < 0 || x >= (int) size.getWidth() || y >= (int) size.getHeight())
-			return null;
+			return new TileVoid(new Vector2f(0, 0), this);
 		return tiles[x + y * (int) size.getWidth()];
+	}
+	
+	public int getGravity() {
+		return this.gravity;
 	}
 }

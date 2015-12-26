@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 public class Keyboard implements KeyListener {
 
-	private boolean[] keys = new boolean[500];
+	private static boolean[] keys = new boolean[500];
 
 	@Override
 	public void keyPressed(KeyEvent e) {
@@ -23,8 +23,8 @@ public class Keyboard implements KeyListener {
 	}
 	
 	// --- getters and setters
-	public boolean isPressed(int keycode) {
-		if (keycode >= 0 && keycode < 500) return this.keys[keycode];
+	public static boolean isPressed(int keycode) {
+		if (keycode >= 0 && keycode < 500) return keys[keycode];
 		else return false;
 	}
 }

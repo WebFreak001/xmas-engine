@@ -27,4 +27,6 @@ public abstract class Tile {
 	public void setPosition(Vector2f position) {
 		this.position = position;
 	}
+	
+	public abstract boolean isSolid();
 }

@@ -26,4 +26,8 @@ public class TileGrass extends Tile {
 		}
 	}
 
+	// --- getters and setters
+	public boolean isSolid() {
+		return true;
+	}
 }
