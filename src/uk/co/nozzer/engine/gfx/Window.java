@@ -1,4 +1,4 @@
-package uk.co.nozzer.gfx;
+package uk.co.nozzer.engine.gfx;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -6,9 +6,9 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.WindowConstants;
 
-import uk.co.nozzer.input.Keyboard;
-import uk.co.nozzer.input.Mouse;
-import uk.co.nozzer.maths.Dimension2f;
+import uk.co.nozzer.engine.input.Keyboard;
+import uk.co.nozzer.engine.input.Mouse;
+import uk.co.nozzer.engine.maths.Dimension2f;
 
 public class Window extends JFrame {
 

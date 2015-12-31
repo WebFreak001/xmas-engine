@@ -5,12 +5,12 @@ import java.awt.event.KeyEvent;
 import com.deviotion.terraria.gfx.Art;
 import com.deviotion.terraria.level.Level;
 
-import uk.co.nozzer.entities.EntityRenderable;
-import uk.co.nozzer.gfx.Bitmap;
-import uk.co.nozzer.gfx.Font;
-import uk.co.nozzer.input.Keyboard;
-import uk.co.nozzer.maths.Dimension2f;
-import uk.co.nozzer.maths.Vector2f;
+import uk.co.nozzer.engine.entities.EntityRenderable;
+import uk.co.nozzer.engine.gfx.Bitmap;
+import uk.co.nozzer.engine.gfx.Font;
+import uk.co.nozzer.engine.input.Keyboard;
+import uk.co.nozzer.engine.maths.Dimension2f;
+import uk.co.nozzer.engine.maths.Vector2f;
 
 public class EntityPlayer extends EntityRenderable {
 

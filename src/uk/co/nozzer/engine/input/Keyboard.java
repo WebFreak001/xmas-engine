@@ -1,4 +1,4 @@
-package uk.co.nozzer.input;
+package uk.co.nozzer.engine.input;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;

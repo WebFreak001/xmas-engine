@@ -1,25 +1,28 @@
 package com.deviotion.terraria;
 
 import com.deviotion.terraria.states.StateGame;
-import com.deviotion.terraria.states.StateTest;
+import com.deviotion.terraria.states.StateGenerationThing;
 
-import uk.co.nozzer.Game;
-import uk.co.nozzer.gfx.Bitmap;
-import uk.co.nozzer.gfx.Window;
-import uk.co.nozzer.states.State;
-import uk.co.nozzer.states.StateManager;
+import uk.co.nozzer.engine.Game;
+import uk.co.nozzer.engine.gfx.Bitmap;
+import uk.co.nozzer.engine.gfx.Window;
+import uk.co.nozzer.engine.states.State;
+import uk.co.nozzer.engine.states.StateManager;
 
 public class TerrariaClone extends Game {
 
 	private StateManager stateManager;
 	
 	private State gameState = new StateGame();
+	private State genState = new StateGenerationThing();
 	
 	public TerrariaClone(Window window) {
 		super(window);
 		
 		this.stateManager = new StateManager();
-		this.stateManager.addState(gameState);
+		this.stateManager.addState(gameState); // 0
+		this.stateManager.addState(genState); // 1
+		
 		this.stateManager.setCurrentState(0);
 	}
 

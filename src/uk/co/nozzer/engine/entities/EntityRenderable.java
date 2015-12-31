@@ -1,13 +1,14 @@
-package uk.co.nozzer.entities;
+package uk.co.nozzer.engine.entities;
 
-import uk.co.nozzer.gfx.Bitmap;
-import uk.co.nozzer.maths.Dimension2f;
-import uk.co.nozzer.maths.Vector2f;
+import uk.co.nozzer.engine.gfx.Bitmap;
+import uk.co.nozzer.engine.maths.Dimension2f;
+import uk.co.nozzer.engine.maths.Vector2f;
 
 public class EntityRenderable extends Entity {
 
 	protected Vector2f position;
 	protected Dimension2f size;
+	protected int colour;
 	
 	public EntityRenderable(Vector2f position, Dimension2f size) {
 		this.position = position;
@@ -21,7 +22,7 @@ public class EntityRenderable extends Entity {
 
 	@Override
 	public void render(Bitmap screen) {
-		screen.fillRectangle(position, size, 0xFF00FF);
+		screen.fillRectangle(position, size, colour);
 	}
 
 	// --- getters and setters
@@ -37,5 +38,9 @@ public class EntityRenderable extends Entity {
 	}
 	public void setSize(Dimension2f size) {
 		this.size = size;
+	}
+	
+	public void setColour(int colour) {
+		this.colour = colour;
 	}
 }

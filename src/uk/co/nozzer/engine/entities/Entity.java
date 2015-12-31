@@ -1,6 +1,6 @@
-package uk.co.nozzer.entities;
+package uk.co.nozzer.engine.entities;
 
-import uk.co.nozzer.gfx.Bitmap;
+import uk.co.nozzer.engine.gfx.Bitmap;
 
 public abstract class Entity {
 	

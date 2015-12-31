@@ -1,4 +1,4 @@
-package uk.co.nozzer.gfx;
+package uk.co.nozzer.engine.gfx;
 
 public class Font {
 

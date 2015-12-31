@@ -1,9 +1,9 @@
-package uk.co.nozzer.entities.gfx;
+package uk.co.nozzer.engine.entities.gfx;
 
-import uk.co.nozzer.gfx.Bitmap;
-import uk.co.nozzer.gfx.ColourUtils;
-import uk.co.nozzer.maths.Vector2f;
-import uk.co.nozzer.utils.Utils;
+import uk.co.nozzer.engine.gfx.Bitmap;
+import uk.co.nozzer.engine.gfx.ColourUtils;
+import uk.co.nozzer.engine.maths.Vector2f;
+import uk.co.nozzer.engine.utils.Utils;
 
 public class LightFade extends Light {
 

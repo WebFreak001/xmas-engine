@@ -1,4 +1,4 @@
-package uk.co.nozzer.maths;
+package uk.co.nozzer.engine.maths;
 
 public class Vector2f {
 

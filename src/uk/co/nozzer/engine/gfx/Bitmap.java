@@ -1,4 +1,4 @@
-package uk.co.nozzer.gfx;
+package uk.co.nozzer.engine.gfx;
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
@@ -8,8 +8,9 @@ import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
-import uk.co.nozzer.maths.Dimension2f;
-import uk.co.nozzer.maths.Vector2f;
+import uk.co.nozzer.engine.maths.Dimension2f;
+import uk.co.nozzer.engine.maths.Vector2f;
+import uk.co.nozzer.engine.utils.Utils;
 
 public class Bitmap {
 
@@ -34,7 +35,7 @@ public class Bitmap {
 		this.image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		this.pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 	}
-
+	
 	public Bitmap(String path) {
 		try {
 			BufferedImage image = ImageIO.read(this.getClass().getResourceAsStream(path));
@@ -66,6 +67,13 @@ public class Bitmap {
 				setPixel(xp, yp, bitmap.getPixel(x, y));
 			}
 		}
+	}
+	
+	public void blit(Bitmap bitmap, Vector2f position, int scale) {
+		blit(bitmap, (int) position.getX(), (int) position.getY(), scale);
+	}
+	public void blit(Bitmap bitmap, int xPos, int yPos, int scale) {
+		
 	}
 
 	public void fillRectangle(Vector2f position, Dimension2f size, int colour) {
@@ -103,6 +111,32 @@ public class Bitmap {
 				}
 			}
 		}
+	}
+	
+	public void fillEllipse(int xPos, int yPos, int radiusWidth, int radiusHeight, int colour) {
+		for (int x = -radiusWidth; x <= radiusWidth; x++) {
+			for (int y = -radiusHeight; y <= radiusHeight; y++) {
+				if (x * x + y * y < radiusWidth * radiusHeight) {
+					setPixel(xPos + x, yPos + y, colour);
+				}
+			}
+		}
+	}
+	
+	public void vignette() {
+		int radiusWidth = (int) width;
+		int radiusHeight = (int) height;
+		
+		for (int x = -radiusWidth; x <= radiusWidth; x++) {
+			for (int y = -radiusHeight; y <= radiusHeight; y++) {
+				if (x * x + y * y < radiusWidth * radiusHeight) {
+					int xp = width / 2 + x;
+					int yp = height / 2 + y;
+					setPixel(xp, yp, ColourUtils.darken(getPixel(xp, yp), (int) Utils.distance(xp, yp, width / 2, height / 2) / 2));
+				}
+			}
+		}
+		
 	}
 
 	public void drawString(String string, Font font, int x, int y, int colour) {

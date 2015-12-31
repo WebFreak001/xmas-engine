@@ -2,8 +2,8 @@ package com.deviotion.terraria.level;
 
 import com.deviotion.terraria.gfx.Art;
 
-import uk.co.nozzer.gfx.Bitmap;
-import uk.co.nozzer.maths.Vector2f;
+import uk.co.nozzer.engine.gfx.Bitmap;
+import uk.co.nozzer.engine.maths.Vector2f;
 
 public class TileStone extends Tile {
 

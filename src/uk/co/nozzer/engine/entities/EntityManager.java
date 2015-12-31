@@ -1,15 +1,15 @@
-package uk.co.nozzer.entities;
+package uk.co.nozzer.engine.entities;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.nozzer.gfx.Bitmap;
+import uk.co.nozzer.engine.gfx.Bitmap;
 
 public class EntityManager {
 
-	private ArrayList<Entity> entities = new ArrayList<Entity>();
+	protected ArrayList<Entity> entities = new ArrayList<Entity>();
 	
-	private int maxEntities = 500;
+	protected int maxEntities = 500;
 	
 	public EntityManager() {
 		

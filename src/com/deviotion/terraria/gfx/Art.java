@@ -1,7 +1,7 @@
 package com.deviotion.terraria.gfx;
 
-import uk.co.nozzer.gfx.Bitmap;
-import uk.co.nozzer.gfx.Spritesheet;
+import uk.co.nozzer.engine.gfx.Bitmap;
+import uk.co.nozzer.engine.gfx.Spritesheet;
 
 public class Art {
 	public static final Spritesheet TILES = new Spritesheet(new Bitmap("/tiles.png"), 8);

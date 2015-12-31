@@ -1,9 +1,9 @@
-package uk.co.nozzer.states;
+package uk.co.nozzer.engine.states;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import uk.co.nozzer.gfx.Bitmap;
+import uk.co.nozzer.engine.gfx.Bitmap;
 
 public class StateManager {
 

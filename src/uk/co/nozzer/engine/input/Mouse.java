@@ -1,10 +1,10 @@
-package uk.co.nozzer.input;
+package uk.co.nozzer.engine.input;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
-import uk.co.nozzer.maths.Vector2f;
+import uk.co.nozzer.engine.maths.Vector2f;
 
 public class Mouse implements MouseListener, MouseMotionListener {
 	
