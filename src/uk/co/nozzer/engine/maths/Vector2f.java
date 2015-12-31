@@ -5,6 +5,8 @@ public class Vector2f {
 	private float x;
 	private float y;
 	
+	public static final Vector2f ORIGIN = new Vector2f(0, 0);
+	
 	public Vector2f() {
 		this.x = 0;
 		this.y = 0;
@@ -14,7 +16,6 @@ public class Vector2f {
 		this.x = x;
 		this.y = y;
 	}
-	
 	
 	public void add(float value) {
 		this.x += value;

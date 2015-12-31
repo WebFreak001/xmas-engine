@@ -6,7 +6,9 @@ import uk.co.nozzer.engine.maths.Vector2f;
 
 public class PanelMap extends Panel {
 
+	private int scale = 10;
 	
+	private Bitmap test = new Bitmap("/tiles.png");
 	
 	public PanelMap(Vector2f position, Dimension2f size) {
 		super(position, size);
@@ -18,8 +20,8 @@ public class PanelMap extends Panel {
 	}
 	
 	@Override
-	public void render(Bitmap screen) {
-		
+	public void render() {
+		screen.blit(test, 0, 0, scale);
 	}
 
 }

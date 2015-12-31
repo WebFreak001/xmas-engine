@@ -6,22 +6,26 @@ import uk.co.nozzer.engine.maths.Vector2f;
 
 public class Panel {
 
-	private Vector2f position;
-	private Dimension2f size;
+	protected Vector2f position;
+	protected Dimension2f size;
 	
-	private int backgroundColour = 0x222222;
+	protected int backgroundColour = 0x222222;
+	
+	protected Bitmap screen;
 	
 	public Panel(Vector2f position, Dimension2f size) {
 		this.position = position;
 		this.size = size;
+		
+		this.screen = new Bitmap((int) size.getWidth(), (int) size.getHeight());
 	}
 	
 	public void update(double delta) {
 		
 	}
 	
-	public void render(Bitmap screen) {
-		screen.fillRectangle(position, size, backgroundColour);
+	public void render() {
+		screen.fill(backgroundColour);
 	}
 	
 	// --- getters and setters
@@ -33,6 +37,9 @@ public class Panel {
 	}
 	public Dimension2f getSize() {
 		return this.size;
+	}
+	public Bitmap getScreen() {
+		return this.screen;
 	}
 	
 	public void setBackgroundColour(int colour) {

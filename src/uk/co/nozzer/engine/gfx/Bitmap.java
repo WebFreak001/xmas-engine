@@ -70,10 +70,17 @@ public class Bitmap {
 	}
 	
 	public void blit(Bitmap bitmap, Vector2f position, int scale) {
+		if (scale <= 0) scale = 1;
 		blit(bitmap, (int) position.getX(), (int) position.getY(), scale);
 	}
 	public void blit(Bitmap bitmap, int xPos, int yPos, int scale) {
-		
+		for (int y = 0; y < bitmap.getHeight() * scale; y++) {
+			int yp = y + yPos;
+			for (int x = 0; x < bitmap.getWidth() * scale; x++) {
+				int xp = x + xPos;
+				fillRectangle(xp, yp, scale, scale, bitmap.getPixel(x / scale, y / scale));
+			}
+		}
 	}
 
 	public void fillRectangle(Vector2f position, Dimension2f size, int colour) {

@@ -61,4 +61,8 @@ public class Dimension2f {
 	public float getHeight() {
 		return this.height;
 	}
+	
+	public String toString() {
+		return "W: " + this.width + " H: " + this.height;
+	}
 }
