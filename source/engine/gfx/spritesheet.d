@@ -20,7 +20,7 @@ public:
 		_spriteCountY = sheet.height / spriteHeight;
 	}
 
-	Bitmap opIndex(int xPos, int yPos)
+	Bitmap opIndex(int xPos, int yPos) const
 	{
 		assert(xPos >= 0 && yPos >= 0 && xPos < _spriteCountX && yPos < _spriteCountY);
 		Bitmap sprite = Bitmap(_spriteWidth, _spriteHeight);
@@ -35,12 +35,31 @@ public:
 		}
 		return sprite;
 	}
-	
-	auto sheet() @property { return _sheet; }
-	auto spriteWidth() @property { return _spriteWidth; }
-	auto spriteHeight() @property { return _spriteHeight; }
-	auto spriteCountX() @property { return _spriteCountX; }
-	auto spriteCountY() @property { return _spriteCountY; }
+
+	auto sheet() @property const
+	{
+		return _sheet;
+	}
+
+	auto spriteWidth() @property const
+	{
+		return _spriteWidth;
+	}
+
+	auto spriteHeight() @property const
+	{
+		return _spriteHeight;
+	}
+
+	auto spriteCountX() @property const
+	{
+		return _spriteCountX;
+	}
+
+	auto spriteCountY() @property const
+	{
+		return _spriteCountY;
+	}
 
 private:
 	Bitmap _sheet;

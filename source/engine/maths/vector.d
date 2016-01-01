@@ -1,7 +1,7 @@
 module engine.maths.vector;
 
 import std.conv;
-import std.math;
+public import std.math;
 
 alias vec2 = Vector!(2, float);
 alias vec3 = Vector!(3, float);
@@ -43,22 +43,22 @@ struct Vector(int n, T)
 		T[n] arr;
 		static if (op == "+")
 		{
-			arr = data[] + rhs.data[];
+			arr = data[] + (cast(typeof(this)) rhs).data[];
 			return Vector!(n, T)(arr);
 		}
 		else static if (op == "-")
 		{
-			arr = data[] - rhs.data[];
+			arr = data[] - (cast(typeof(this)) rhs).data[];
 			return Vector!(n, T)(arr);
 		}
 		else static if (op == "*")
 		{
-			arr = data[] * rhs;
+			arr = data[] * cast(Type) rhs;
 			return Vector!(n, T)(arr);
 		}
 	}
 
-	auto opDispatch(string s)()
+	auto opDispatch(string s)() const
 	{
 		static assert(s.length > 0, "Invalid opDispatch call with empty string!");
 		static if (s.length == 1)
@@ -96,7 +96,7 @@ struct Vector(int n, T)
 			static assert(0, "No such component for " ~ typeof(this).stringof ~ ": " ~ s);
 	}
 
-	T opIndex(size_t i)
+	T opIndex(size_t i) const
 	{
 		return data[i];
 	}
@@ -111,15 +111,15 @@ struct Vector(int n, T)
 		mixin("return data[i] " ~ op ~ "= value;");
 	}
 	
-	T lengthSquared() @property
+	T lengthSquared() @property const
 	{
-		T res;
-		foreach(f; data)
+		T res = data[0] * data[0];
+		foreach(f; data[1 .. $])
 			res += f * f;
 		return res;
 	}
 	
-	T length() @property
+	T length() @property const
 	{
 		static if(!__traits(compiles, { return sqrt(lengthSquared); }))
 			return cast(T) sqrt(cast(float) lengthSquared);
@@ -127,12 +127,12 @@ struct Vector(int n, T)
 			return sqrt(lengthSquared);
 	}
 
-	string toString()
+	string toString() const
 	{
 		return data.to!string;
 	}
 
-	bool opEquals(T)(T b)
+	bool opEquals(T)(T b) const
 	{
 		static assert(is(T == typeof(this)),
 			"cannot implicitly convert " ~ typeof(this).stringof ~ " to " ~ T.stringof);
@@ -146,34 +146,6 @@ struct Vector(int n, T)
 		foreach(i, val; data)
 			arr[i] = cast(T.Type) val;
 		return T(arr);
-	}
-	
-	/// Returns a tuple with named fields x, y, z and w
-	auto tuple() @property
-	{
-		import std.typecons;
-		static if(Size == 1)
-			return mixin("tuple!(\"x\")(" ~ TupleConstructor!(data.length) ~ ")");
-		else static if(Size == 2)
-			return mixin("tuple!(\"x\", \"y\")(" ~ TupleConstructor!(data.length) ~ ")");
-		else static if(Size == 3)
-			return mixin("tuple!(\"x\", \"y\", \"z\")(" ~ TupleConstructor!(data.length) ~ ")");
-		else
-			return mixin("tuple!(\"x\", \"y\", \"z\", \"w\")(" ~ TupleConstructor!(data.length) ~ ")");
-	}
-	
-	/// Returns a tuple with named fields r, g, b and a
-	auto colorTuple() @property
-	{
-		import std.typecons;
-		static if(Size == 1)
-			return mixin("tuple!(\"r\")(" ~ TupleConstructor!(data.length) ~ ")");
-		else static if(Size == 2)
-			return mixin("tuple!(\"r\", \"g\")(" ~ TupleConstructor!(data.length) ~ ")");
-		else static if(Size == 3)
-			return mixin("tuple!(\"r\", \"g\", \"b\")(" ~ TupleConstructor!(data.length) ~ ")");
-		else
-			return mixin("tuple!(\"r\", \"g\", \"b\", \"a\")(" ~ TupleConstructor!(data.length) ~ ")");
 	}
 }
 
@@ -190,12 +162,4 @@ unittest
 	vec3 c = vec3(4, 4, 2);
 	assert(b == c.xz);
 	assert(b.xxy == c);
-	
-	import std.typecons;
-	void checkTuple(Tuple!(int, "x", int, "y") t, int x2, int y2)
-	{
-		assert(t.x == x2);
-		assert(t.y == y2);
-	}
-	checkTuple((cast(vec2i) a).tuple, 0, 5);
 }

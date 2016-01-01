@@ -1,5 +1,6 @@
 module engine.game;
 
+import std.stdio;
 import std.string;
 import std.datetime;
 
@@ -35,10 +36,14 @@ public:
 		immutable int targetFPS = 60;
 		immutable int skipms = 1000 / targetFPS;
 		StopWatch sw;
+		StopWatch bench;
 		SDL_Event event;
+		long benchUpdate, benchDraw;
 
 		while (true)
 		{
+			sw.start();
+			
 			while (SDL_PollEvent(&event))
 			{
 				switch (event.type)
@@ -68,10 +73,20 @@ public:
 			if (sleep > 0)
 				Thread.sleep(dur!"msecs"(sleep));
 
-			sw.start();
-
+			bench.start();
 			privateUpdate(delta);
 			privateRender();
+			bench.stop();
+			benchUpdate = bench.peek.usecs;
+			bench.reset();
+			bench.start();
+			renderToScreen();
+			bench.stop();
+			benchDraw = bench.peek.usecs;
+			bench.reset();
+			
+			writeln("UPDATE: ", benchUpdate);
+			writeln("DRAW:   ", benchDraw);
 
 			sw.stop();
 			delta = sw.peek.usecs * 0.0000001;
@@ -107,15 +122,19 @@ private:
 	{
 		this.update(delta);
 	}
-
-	void privateRender()
+	
+	void renderToScreen()
 	{
-		this.render(screen);
 		SDL_UpdateTexture(_texture, null, _screen.pixels.ptr, cast(int)(_screen.width * Color.sizeof));
 
 		SDL_RenderClear(_renderer);
 		SDL_RenderCopy(_renderer, _texture, null, null);
 		SDL_RenderPresent(_renderer);
+	}
+
+	void privateRender()
+	{
+		this.render(screen);
 	}
 
 	SDL_Window* _window;
