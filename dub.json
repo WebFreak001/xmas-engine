@@ -1,0 +1,13 @@
+{
+	"name": "xmas-engine",
+	"description": "A minimal D application.",
+	"copyright": "Copyright © 2015, webfreak",
+	"authors": [
+		"webfreak"
+	],
+	"targetType": "executable",
+	"dependencies": {
+		"imageformats": "~>5.2.0",
+		"derelict-sdl2": "~>1.9.7"
+	}
+}

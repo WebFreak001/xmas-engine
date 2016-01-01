@@ -1,5 +1,15 @@
+.dub
+docs.json
+__dummy.html
+*.o
+*.obj
 .settings/*
 bin/*
 .classpath
 .project
 hs_err_*
+__test__library__
+dub.selections.json
+xmas-engine
+test.png
+*.a
